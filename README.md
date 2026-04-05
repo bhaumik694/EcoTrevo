@@ -133,28 +133,3 @@ Aviation accounts for roughly 2.5% of global CO₂ emissions. Most travelers hav
 
 ---
 
-## 🤝 Contributing
-
-Pull requests are welcome! To contribute:
-
-1. Fork the repo
-2. Create your feature branch: `git checkout -b feature/my-feature`
-3. Commit your changes: `git commit -m 'Add my feature'`
-4. Push: `git push origin feature/my-feature`
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-Open-source under the [MIT License](LICENSE).
-
----
-
-## 👨‍💻 Author
-
-**Chaitu-Boss** — [github.com/Chaitu-Boss](https://github.com/Chaitu-Boss)
-
----
-
-> *Explore the world. Know your footprint.*
