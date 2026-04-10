@@ -1,66 +1,115 @@
-# EcoTrevo — Travel Manager & Carbon Footprint Calculator
+# 🌿 EcoTrevo
 
-> A travel web app where users can search for flights between global airports, pick travel dates, and calculate the CO₂ emissions of their journey — built for a hackathon to blend travel exploration with environmental awareness.
+> A full-stack eco-travel platform that helps users calculate their carbon footprint and make environmentally conscious travel decisions.
 
 ---
 
-## 📌 Description
+## 📋 Table of Contents
 
-**SkyTrace** is a React-based travel application that puts two powerful ideas together: the joy of exploring the world, and the responsibility of understanding your environmental impact. Users land on a cinematic, full-screen flight search interface where they can select departure and destination airports from 50+ global options, pick travel dates, and hit "Book Now". The **Carbon Footprint Calculator** then lets them estimate CO₂ emissions per passenger based on distance, travel class, and trip type — turning every booking decision into an informed one.
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Environment Variables](#environment-variables)
+  - [Installation & Running](#installation--running)
+- [API Overview](#api-overview)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## Overview
+
+**EcoTrevo** is a full-stack web application that merges eco-conscious travel with interactive tooling. It features user authentication, a carbon footprint calculator, an image carousel for travel inspiration, and a clean landing page — all built on a React + Vite frontend with a Node.js/Express backend connected to MongoDB.
 
 ---
 
 ## ✨ Features
 
-- 🌍 **Cinematic Home Page** — Full-screen auto-scrolling image carousel with glassmorphism UI overlay
-- 🛫 **Flight Search** — From/To airport selector with 50+ airports across India, USA, UK, Europe, Middle East, Asia, Africa, and more
-- 📅 **Date Picker with Validation** — Smart date inputs that reject past dates and invalid ranges with toast notifications
-- 🧮 **Carbon Footprint Calculator** — Real CO₂ estimates using ICAO-standard emission factors based on:
-  - Distance (short / medium / long-haul rates)
-  - Travel class (Economy → First Class multipliers)
-  - One-way or Round Trip
-  - Number of passengers
-- 🌱 **Eco Insights** — Translates CO₂ into trees needed, driving equivalent, and energy consumption
-- 🔐 **Authentication** — Signup and Login pages with smooth navigation
-- 📱 **Responsive Design** — Built with Tailwind CSS for a clean, modern UI
+- **User Authentication** — Register and login with JWT-based auth and bcrypt password hashing
+- **Carbon Footprint Calculator** — Interactive calculator to estimate travel-related carbon emissions
+- **Image Carousel** — Scenic travel imagery slideshow on the home page
+- **Eco Travel Home Page** — Landing page with travel inspiration content
+- **Protected Routes** — Auth middleware guards API endpoints
+- **Responsive UI** — Built with Tailwind CSS for a clean, mobile-friendly design
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
+| Layer | Technology |
 |---|---|
-| **React 18** | Frontend UI framework |
-| **React Router DOM** | Client-side routing |
-| **Tailwind CSS** | Utility-first styling |
-| **Vite** | Build tool & dev server |
-| **react-select** | Searchable airport dropdown |
-| **react-toastify** | Toast notifications |
-| **react-icons** | Icon library |
+| Frontend | React 18, Vite, React Router, Tailwind CSS |
+| Backend | Node.js, Express.js |
+| Database | MongoDB (via Mongoose) |
+| Auth | JWT, bcryptjs |
+| Styling | Tailwind CSS, PostCSS |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-src/
-├── App.jsx                            # Root component with Router setup
-├── App.css                            # Global styles
-├── main.jsx                           # React DOM entry point
-├── index.css                          # Tailwind CSS directives
-├── Routes.jsx                         # Centralized route definitions
-├── assets/
-│   ├── image1.png                     # Carousel background 1
-│   ├── image2.png                     # Carousel background 2
-│   ├── image3.png                     # Carousel background 3
-│   └── swap.png                       # Swap icon for From/To
-└── components/
-    ├── Navbar.jsx                     # Navigation bar (Home, Calculator, Reviews, Contact, About)
-    ├── Home.jsx                       # Landing page with flight search UI
-    ├── ImageCarousel.jsx              # Auto-scrolling full-screen background carousel
-    ├── CarbonFootprintCalculator.jsx  # CO₂ emission calculator for flights
-    ├── Signup.jsx                     # User registration page
-    └── login.jsx                      # User login page
+EcoTrevo/
+│
+├── server.js                          # Main Express app entry point
+├── package.json                       # Root dependencies
+├── package-lock.json
+│
+├── router/
+│   └── router.js                      # Express route definitions
+│
+├── backend/
+│   ├── .env                           # Backend environment variables
+│   │
+│   ├── controllers/
+│   │   └── auth.js                    # Register & login controller logic
+│   │
+│   ├── middleware/
+│   │   └── auth.js                    # JWT verification middleware
+│   │
+│   └── model/
+│       └── auth.js                    # Mongoose user schema (name, email, password)
+│
+├── utils/
+│   └── db.js                          # MongoDB connection setup
+│
+└── frontend/                          # React + Vite SPA
+    ├── index.html                     # HTML entry shell
+    ├── vite.config.js                 # Vite bundler config
+    ├── tailwind.config.js             # Tailwind CSS config
+    ├── postcss.config.js              # PostCSS config
+    ├── eslint.config.js               # ESLint rules
+    ├── package.json
+    │
+    ├── public/
+    │   ├── scenery.png                # Public scenery background image
+    │   └── vite.svg                   # Vite favicon
+    │
+    └── src/
+        ├── main.jsx                   # React app bootstrap
+        ├── App.jsx                    # Root component
+        ├── App.css                    # Global styles
+        ├── index.css                  # Tailwind base imports
+        ├── Routes.jsx                 # App-wide route definitions (React Router)
+        │
+        ├── assets/
+        │   ├── image1.png             # Hero/carousel image 1
+        │   ├── image2.png             # Hero/carousel image 2
+        │   ├── image3.png             # Hero/carousel image 3
+        │   ├── guests.png             # Guests illustration
+        │   ├── swap.png               # Swap/exchange icon
+        │   └── react.svg              # React logo
+        │
+        └── components/
+            ├── Home.jsx               # Main landing page with travel content
+            ├── Navbar.jsx             # Navigation bar
+            ├── CarbonFootprintCalculator.jsx  # Interactive carbon calculator (18KB)
+            ├── ImageCarousel.jsx      # Auto-scrolling image carousel
+            ├── Signup.jsx             # User registration form
+            └── login.jsx              # User login form
 ```
 
 ---
@@ -70,66 +119,51 @@ src/
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) v18+
-- npm or yarn
+- [MongoDB](https://www.mongodb.com/) (local or Atlas)
 
-### Installation
+---
+
+### Environment Variables
+
+Create a `.env` file inside `backend/`:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+PORT=5000
+```
+
+---
+
+### Installation & Running
+
+**1. Clone the repository**
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/Chaitu-Boss/Hackathon-Project-1.git
+git clone https://github.com/bhaumik694/EcoTrevo.git
+cd EcoTrevo
+```
 
-# 2. Navigate into the project
-cd Hackathon-Project-1
+**2. Install root/backend dependencies**
 
-# 3. Install dependencies
+```bash
 npm install
+```
 
-# 4. Start the development server
+**3. Start the backend server**
+
+```bash
+node server.js
+```
+
+**4. Install and run the frontend**
+
+```bash
+cd frontend
+npm install
 npm run dev
 ```
 
-App runs at `http://localhost:5173`
-
-### Build for Production
-
-```bash
-npm run build
-```
+The frontend will be available at `http://localhost:5173` and the backend at `http://localhost:5000`.
 
 ---
-
-## 🗺️ Routes
-
-| Path | Component | Description |
-|---|---|---|
-| `/` | `Home` | Flight search landing page |
-| `/calculator` | `CarbonFootprintCalculator` | CO₂ emission estimator |
-| `/signup` | `Signup` | User registration |
-| `/login` | `Login` | User login |
-
----
-
-## 🧮 How Carbon Calculation Works
-
-The calculator uses the **Haversine formula** to compute the great-circle distance between two airports using their coordinates, then applies ICAO-standard emission factors:
-
-| Haul Type | Distance | kg CO₂ per km |
-|---|---|---|
-| Short-haul | < 1,500 km | 0.255 |
-| Medium-haul | 1,500 – 4,000 km | 0.195 |
-| Long-haul | > 4,000 km | 0.147 |
-
-**Class multipliers** (relative to Economy):
-- Economy: ×1.0
-- Premium Economy: ×1.6
-- Business: ×2.9
-- First Class: ×4.0
-
----
-
-## 🌱 Why This Matters
-
-Aviation accounts for roughly 2.5% of global CO₂ emissions. Most travelers have no idea what their flight costs the planet. This app puts that number right in front of you — so you can fly informed, and maybe fly a little less.
-
----
-
