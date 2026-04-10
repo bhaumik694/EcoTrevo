@@ -1,4 +1,4 @@
-# ✈️ SkyTrace — Flight Explorer & Carbon Footprint Calculator
+# EcoTrevo — Travel Manager & Carbon Footprint Calculator
 
 > A travel web app where users can search for flights between global airports, pick travel dates, and calculate the CO₂ emissions of their journey — built for a hackathon to blend travel exploration with environmental awareness.
 
